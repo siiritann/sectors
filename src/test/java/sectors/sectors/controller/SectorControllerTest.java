@@ -53,7 +53,7 @@ class SectorControllerTest {
         var resultAction = mvc.perform(request)
                 .andReturn().getFlashMap();
 
-        assertThat(resultAction.get("errorMessage")).isEqualTo("Name is required");
+        assertThat(resultAction.containsValue("Name is required")).isTrue();
     }
 
     @Test
@@ -66,7 +66,7 @@ class SectorControllerTest {
         var resultAction = mvc.perform(request)
                 .andReturn().getFlashMap();
 
-        assertThat(resultAction.get("errorMessage")).isEqualTo("At least one sector is required");
+        assertThat(resultAction.containsValue("At least one sector is required")).isTrue();
     }
 
     @Test
@@ -79,7 +79,7 @@ class SectorControllerTest {
         var resultAction = mvc.perform(request)
                 .andReturn().getFlashMap();
 
-        assertThat(resultAction.get("errorMessage")).isEqualTo("You must agree to terms");
+        assertThat(resultAction.containsValue("You must agree to terms")).isTrue();
     }
 
 }
