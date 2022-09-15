@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Select your sectors</title>
+    <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">-->
+</head>
+<body>
+<p> Please enter your name and pick the sectors you are currently involved in.</p>
+<br>
+<br>
+<form method="post">
+    <label for="name">Name:</label>
+    <input id="name" type="text" name="name" th:value="${user?.name}" minlength="3" maxlength="255" required>
+    <br>
+    <br>
+    <label for="sectors">Sectors:</label>
+    <select id="sectors" name="sectors" multiple="" size="5" required>
+        <option th:each="sector:${sectors}"
+                th:text="${'&nbsp;'.repeat(sector.level * 4) + sector.name}"
+                th:value="${sector.id}"
+                th:selected="${user?.sectors?.contains(sector)}"></option>
+    </select>
+    <br>
+    <p>Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</p>
+    <br>
+    <br>
+    <label for="agreeToTerms">Agree to terms</label>
+    <input id="agreeToTerms" type="checkbox" name="agreedToTerms" required th:checked="${user?.isAgreedToTerms() }">
+    <br>
+    <br>
+    <input id="submit" type="submit" value="Save">
+    <br>
+    <p id="successMessage" th:text="${successMessage}" ></p>
+    <p id="errorMessage" th:text="${errorMessage}"></p>
+</form>
+</body>
+</html>
