@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
-import sectors.sectors.dto.CreateSectorsDto;
+import sectors.sectors.dto.CreateUserSectorsDto;
 import sectors.sectors.dto.UserSectorDto;
 import sectors.sectors.service.SectorsBusinessService;
 
@@ -79,7 +79,7 @@ public class SectorController {
 
         Long userId = (Long) session.getAttribute(USER_ID);
 
-        CreateSectorsDto dto = CreateSectorsDto.builder()
+        CreateUserSectorsDto dto = CreateUserSectorsDto.builder()
                 .id(userId)
                 .name(name)
                 .sectors(sectors)

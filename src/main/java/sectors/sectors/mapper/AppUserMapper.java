@@ -3,7 +3,7 @@ package sectors.sectors.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
-import sectors.sectors.dto.CreateSectorsDto;
+import sectors.sectors.dto.CreateUserSectorsDto;
 import sectors.sectors.dto.UserSectorDto;
 import sectors.sectors.entity.AppUserEntity;
 
@@ -14,7 +14,7 @@ import static org.mapstruct.ReportingPolicy.IGNORE;
 public interface AppUserMapper {
 
     @Mapping(target = "sectors", ignore = true)
-    AppUserEntity toEntity(CreateSectorsDto dto);
+    AppUserEntity toEntity(CreateUserSectorsDto dto);
 
 
     @Mapping(target = "sectors", ignore = true)

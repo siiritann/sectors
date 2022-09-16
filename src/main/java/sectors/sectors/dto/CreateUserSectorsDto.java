@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateSectorsDto {
+public class CreateUserSectorsDto {
 
     private Long id;
     @NotEmpty

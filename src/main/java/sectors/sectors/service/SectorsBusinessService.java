@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import sectors.sectors.dto.CreateSectorsDto;
+import sectors.sectors.dto.CreateUserSectorsDto;
 import sectors.sectors.dto.SectorDto;
 import sectors.sectors.dto.UserSectorDto;
 import sectors.sectors.entity.AppUserEntity;
@@ -30,7 +30,7 @@ public class SectorsBusinessService {
     }
 
     @Transactional
-    public UserSectorDto create(@Valid CreateSectorsDto dto) {
+    public UserSectorDto create(@Valid CreateUserSectorsDto dto) {
         AppUserEntity entity = userComposeService.composeEntity(dto);
 
         Set<SectorEntity> sectors = sectorDataService.getByIdIn(dto.getSectors());
