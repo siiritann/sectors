@@ -1,10 +1,6 @@
 # Sectors service
 
-Sectors service is a service that provides one endpoint for creating sectors.
-
-## Requirements
-
-* [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
+Sectors service is a service that provides a web application for adding user's sectors.
 
 ## Run application
 
