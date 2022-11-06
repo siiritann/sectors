@@ -1,7 +1,6 @@
 package sectors.sectors.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import sectors.sectors.entity.SectorEntity;
 import sectors.sectors.repository.SectorRepository;
@@ -20,7 +19,11 @@ public class SectorDataService {
     }
 
     public List<SectorEntity> getAll() {
-        return repository.findAll(Sort.sort(SectorEntity.class).by(SectorEntity::getSorting));
+        return repository.findAll();
+    }
+
+    public List<SectorEntity> getTopLevelSectors() {
+        return repository.findByParentIdOrderByName(null);
     }
 
 }

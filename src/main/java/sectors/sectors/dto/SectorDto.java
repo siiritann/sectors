@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -12,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class SectorDto {
 
     private Long id;
+    private Long parentId;
     private String name;
-    private Integer level;
-    private Integer sorting;
+    private List<SectorDto> children;
 
 }

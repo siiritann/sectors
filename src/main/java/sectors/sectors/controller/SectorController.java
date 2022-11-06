@@ -32,7 +32,8 @@ public class SectorController {
 
     @GetMapping("/")
     public String get(Model model, HttpSession session, HttpServletRequest request) {
-        model.addAttribute("sectors", service.getAllSectors());
+        model.addAttribute("sectors", service.getSectorsMap());
+
         Long userId = (Long) session.getAttribute(USER_ID);
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);

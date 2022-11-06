@@ -11,8 +11,12 @@ import sectors.sectors.entity.AppUserEntity;
 import sectors.sectors.entity.SectorEntity;
 
 import javax.validation.Valid;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Service
 @RequiredArgsConstructor
@@ -45,11 +49,28 @@ public class SectorsBusinessService {
         if (entity == null) {
             return null;
         }
-        UserSectorDto dto =  userComposeService.composeDto(entity);
+        UserSectorDto dto = userComposeService.composeDto(entity);
         Set<SectorEntity> sectors = entity.getSectors();
         dto.setSectors(sectorComposeService.composeSet(sectors));
 
         return dto;
+    }
+
+    public LinkedHashMap<Long, String> getSectorsMap() {
+        List<SectorEntity> sectorEntities = sectorDataService.getTopLevelSectors();
+        List<SectorDto> dtoList = sectorComposeService.composeDtoList(sectorEntities);
+        LinkedHashMap<Long, String> modifiedSectors = new LinkedHashMap<>();
+        addSectors(0, dtoList, modifiedSectors);
+        return modifiedSectors;
+    }
+
+    private void addSectors(int level, List<SectorDto> sectors, Map<Long, String> modifiedSectors) {
+        for (SectorDto sector : sectors) {
+            modifiedSectors.put(sector.getId(), "&nbsp;".repeat(level * 4) + sector.getName());
+            if (!isEmpty(sector.getChildren())) {
+                addSectors(level + 1, sector.getChildren(), modifiedSectors);
+            }
+        }
     }
 
 }

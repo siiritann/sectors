@@ -12,6 +12,8 @@ public interface SectorRepository extends JpaRepository<SectorEntity, Long> {
 
     Set<SectorEntity> getByIdIn(List<Long> ids);
 
+    List<SectorEntity> findByParentIdOrderByName(Long parentId);
+
 }
 
 

@@ -16,8 +16,8 @@
     <label for="sectors">Sectors:</label>
     <select id="sectors" name="sectors" multiple="" size="5" required>
         <option th:each="sector:${sectors}"
-                th:text="${'&nbsp;'.repeat(sector.level * 4) + sector.name}"
-                th:value="${sector.id}"
+                th:utext="${sector.value}"
+                th:value="${sector.key}"
                 th:selected="${user?.sectors?.contains(sector)}"></option>
     </select>
     <br>
@@ -30,7 +30,7 @@
     <br>
     <input id="submit" type="submit" value="Save">
     <br>
-    <p id="successMessage" th:text="${successMessage}" ></p>
+    <p id="successMessage" th:text="${successMessage}"></p>
     <p id="errorMessage" th:text="${errorMessage}"></p>
 </form>
 </body>
